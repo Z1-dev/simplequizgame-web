@@ -17,6 +17,8 @@ body {
     animation: gradientBackground 10s ease infinite;
     position: relative;
     overflow: hidden;
+    flex-direction: column;
+    padding: 10px;
 }
 
 /* Background Video */
@@ -42,6 +44,17 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
+}
+
+.quiz-container {
+    padding: 20px;
+}
+h1 {
+    font-size: 1.8rem;
+}
+#options button {
+    padding: 15px;
+    font-size: 1rem;
 }
 
 /* Header */
