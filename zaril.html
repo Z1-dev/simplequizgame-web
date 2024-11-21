@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="but.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Background Video -->
+  <video id="background-video" autoplay loop muted>
+      <source src="Topographic Textures _ After Effects _ Topographic Design _ Topographic Map  _ Background hd.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+  </video>
+
+  <!-- Falling Particles -->
+  <div id="particles-container"></div>
+
+  <!-- Audio Elements for Correct and Incorrect Answer -->
+  <audio id="correct-sound" src="Ding Sound Effect.mp3"></audio>
+  <audio id="incorrect-sound" src="Wrong Answer.mp3"></audio>
+  
+  <!-- Intro Background Music -->
+  <audio id="quiz-music" loop autoplay>
+      <source src="Grand Theft Auto IV Theme Song _[best quality]_.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+  </audio>
+  
+  <!-- Quiz Background Music -->
+  <audio id="intro-music" loop>
+      <source src="Funny Background Music No Copyright _ Cute Background Music.mp3" type="audio/mp3">
+  </audio>
+  
+
+  <!-- Introduction Section -->
+  <div id="intro-container" class="intro-container">
+    <h1>Welcome to the Zaril Quiz!</h1>
+    <p>Test your knowledge with this exciting quiz. You will be asked a series of questions, and you will need to choose the correct answer. <br> <h2>Ready to start?</h2></p>
+    <button id="start-quiz" class="glow-on-hover">Start Quiz</button>
+
+  </div>
+
+  <!-- Quiz Container (hidden initially) -->
+  <div class="quiz-container" id="quiz-container" style="display:none;">
+      <h1>Quiz</h1>
+      <div id="question-container">
+          <div id="question"></div>
+      </div>
+      <div id="options" class="options-grid"></div>
+      <div id="feedback"></div> <!-- New feedback container -->
+      <button id="next-button">Next</button>
+
+      <!-- Progress Bar -->
+      <div class="progress-bar-container">
+          <div class="progress-bar" id="progress-bar"></div>
+      </div>
+
+      <div id="score">Score: 0</div>
+      <br>
+  </div>
+
+  <script src="zaril.js"></script>
+</body>
+</html>

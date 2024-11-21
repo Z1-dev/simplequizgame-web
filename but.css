@@ -1,0 +1,732 @@
+/* Reset basic styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body background and general layout */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(45deg, #ff6f61, #ffcc00, #ff3366, #ff0099);
+    background-size: 600% 600%;
+    animation: gradientBackground 10s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Video */
+#background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+/* Container for the quiz */
+.quiz-container {
+    width: 80%;
+    max-width: 900px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 60px;
+    border-radius: 30px;
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Header */
+h1 {
+    font-size: 70px;
+    color: #fff;
+    margin-bottom: 30px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    animation: fadeIn 1.5s ease-out forwards, bounce 2s infinite; /* Bounce effect */
+}
+
+/* Bounce animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Question container */
+#question-container {
+    margin-bottom: 50px;
+}
+
+/* Question styling */
+#question {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    padding: 40px;
+    background-color: #ffecb3;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    border: 3px solid #ff8c00; /* Strong border color */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* Options grid */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+/* Option buttons */
+#options button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 30px;
+    font-size: 26px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s ease-in-out;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+#options button:hover {
+    background-color: #45a049;
+    transform: scale(1.1);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Next button */
+#next-button {
+    display: none;
+    background-color: #007bff;
+    color: white;
+    padding: 25px 50px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 28px;
+    margin-top: 30px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s ease-in-out;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+#next-button:hover {
+    background-color: #0069d9;
+    transform: scale(1.1);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Progress bar */
+.progress-bar {
+    width: 100%;
+    height: 15px;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin-top: 40px;
+    position: relative;
+    transition: width 0.5s ease;
+}
+
+/* Progress bar filler */
+#progress-bar {
+    height: 100%;
+    background-color: #4caf50;
+    border-radius: 5px;
+}
+
+/* Score display */
+#score {
+    font-size: 40px;
+    color: #fff;
+    font-weight: 700;
+    margin-top: 30px;
+    animation: scaleScore 0.5s ease-in-out;
+}
+
+/* Final score display */
+#final-score {
+    font-size: 50px;
+    color: #ff3366;
+    margin-top: 50px;
+    font-weight: 900;
+    animation: scaleScore 0.5s ease-in-out;
+}
+
+/* Confetti effect */
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+.confetti {
+    position: absolute;
+    top: -10px;
+    width: 12px;
+    height: 12px;
+    background-color: #FFD700;
+    border-radius: 50%;
+    animation: confettiFall 3s ease-out infinite;
+    opacity: 0.8;
+}
+
+/* Particle effect on mouse move */
+.particle {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particleAnimation 3s infinite ease-out;
+}
+
+@keyframes particleAnimation {
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(0.5);
+        opacity: 1;
+    }
+}
+
+/* Correct and incorrect answer button styles */
+#options button.correct {
+    background-color: #4CAF50;
+    animation: pulseCorrect 0.5s ease-out;
+}
+
+#options button.incorrect {
+    background-color: #f44336;
+    animation: pulseIncorrect 0.5s ease-out;
+}
+
+/* Pulse animations */
+@keyframes pulseCorrect {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pulseIncorrect {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive grid layout */
+@media (min-width: 600px) {
+    .options-grid {
+        grid-template-columns: 1fr 1fr; /* Two columns on wider screens */
+    }
+}
+
+/* Gradient background animation */
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Fade-in animation for text */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+.fade-out {
+    animation: fadeOut 1s ease-in forwards;
+}
+/* Reset basic styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Gradient background */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+/* Background Video */
+#background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+/* Quiz Container */
+.quiz-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* Fade-in animation for the quiz container */
+@keyframes fadeIn {
+    0% { transform: translateY(50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Quiz Title */
+h1 {
+    font-size: 40px;
+    color: #ffcc00;
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Question Container */
+#question-container {
+    margin-bottom: 30px;
+}
+
+/* Question styling */
+#question {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 10px;
+    border: 3px solid #ffcc00;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Options Grid */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Option Buttons */
+#options button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 20px;
+    font-size: 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s ease-in-out;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+#options button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Next Button */
+#next-button {
+    display: none;
+    background-color: #007bff;
+    color: white;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 26px;
+    margin-top: 30px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s ease-in-out;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+#next-button:hover {
+    background-color: #0069d9;
+    transform: scale(1.05);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin-top: 30px;
+    position: relative;
+}
+
+#progress-bar {
+    height: 100%;
+    background-color: #4caf50;
+    border-radius: 5px;
+}
+
+/* Score Display */
+#score {
+    font-size: 32px;
+    color: #ffcc00;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (min-width: 600px) {
+    .options-grid {
+        grid-template-columns: 1fr 1fr; /* Two columns on wider screens */
+    }
+
+    .quiz-container {
+        width: 60%;
+    }
+}
+
+.option-button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+/* Feedback Styling */
+.feedback {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+/* Correct Answer */
+.correct {
+    background-color: #4CAF50; /* Green for correct answers */
+    color: white;
+    border: 2px solid #388E3C;
+}
+
+/* Incorrect Answer */
+.incorrect {
+    background-color: #F44336; /* Red for incorrect answers */
+    color: white;
+    border: 2px solid #D32F2F;
+}
+
+/* Buttons Styling */
+.option-button {
+    font-size: 1.1rem;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    padding: 10px 20px;
+    margin: 10px;
+    width: 80%;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover and active button states */
+.option-button:hover {
+    background-color: #f0f0f0;
+}
+
+.option-button:active {
+    transform: scale(0.98);
+}
+
+.option-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Next Button Styling */
+#next-button {
+    display: none;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+#next-button:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* Confetti Effect (Optional for celebration) */
+.confetti {
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    background-color: randomColor(); /* Custom function to generate random colors */
+    animation: confettiFall 2s infinite;
+}
+
+@keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* Animations for Feedback */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.cursor {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #007bff;
+    border-radius: 50%;
+    pointer-events: none; /* Allow clicking behind the cursor */
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s;
+    mix-blend-mode: difference;
+}
+
+/* Cursor Interaction: When Hovering Over Buttons */
+#options:hover, #next-button:hover, body:hover {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="%23FFD700" stroke="black" stroke-width="1"/></svg>'), pointer;
+}
+
+/* Cursor Particle Effect */
+.cursor-particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #FFD700;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: particleAnim 0.5s ease-out forwards;
+}
+
+@keyframes particleAnim {
+    0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0) translateY(-20px);
+        opacity: 0;
+    }
+}
+@keyframes feedbackAnimation {
+    0% { opacity: 0; transform: translateY(-10px); }
+    50% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(10px); }
+}
+
+.feedback {
+    animation: feedbackAnimation 2s ease;
+}
+
+/* Style for the particles container */
+#particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Makes sure particles don't interfere with clicks */
+    z-index: 1;
+}
+
+/* Style for each individual particle */
+.particle {
+    position: absolute;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.8); /* White particles */
+    border-radius: 50%;
+    animation: fall 5s linear infinite;
+}
+
+/* Particle fall animation */
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Progress Bar Container */
+.progress-bar-container {
+    width: 100%;
+    height: 15px;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin-top: 40px;
+    position: relative;
+}
+
+/* Progress Bar Filler */
+#progress-bar {
+    height: 100%;
+    width: 0%; /* Initially, the progress bar width is 0 */
+    background-color: #4caf50; /* Green color */
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+/* Introduction Section */
+.intro-container {
+    text-align: center;
+    padding: 100px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    width: 80%;
+    max-width: 700px;
+}
+
+.intro-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.intro-container p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+
+
+
+/* Glow effect for the Start Quiz button */
+.glow-on-hover {
+    position: relative;
+    width: 200px;
+    height: 50px;
+    margin: 20px auto;
+    border: none;
+    background: #111;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .glow-on-hover:before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+    z-index: -1;
+    filter: blur(5px);
+    animation: glowing 20s linear infinite;
+  }
+  
+  .glow-on-hover:hover {
+    color: #fff;
+    box-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #00ffff, 0 0 50px #00ffff;
+  }
+  
+  @keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+  }
+  
